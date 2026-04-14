@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { ArrowDown } from 'lucide-react';
+import ResumeDownloadButton from '../Resume/resume';
 
 export default function PortfolioHero() {
   return (
@@ -44,10 +45,8 @@ export default function PortfolioHero() {
           </div>
 
           {/* Scroll Indicator */}
-          <div className="pt-12">
-            <button className="flex items-center gap-2 text-xs uppercase tracking-widest hover:opacity-60 transition-opacity">
-              Scroll down <ArrowDown size={14} />
-            </button>
+          <div className="pt-6">
+           <ResumeDownloadButton/>
           </div>
         </div>
 

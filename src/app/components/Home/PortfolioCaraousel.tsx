@@ -14,31 +14,34 @@ const projects = [
   {
     id: 1,
     title: "DigiMenu",
-    duration: "February 2025 - Present",
+    link: "https://github.com/ShrivastvAryan/Vendor-Menu",
     role: "Full Stack Development",
-    description: "DigiMenu is a smart, mobile-friendly digital menu platform designed to simplify restaurant operations and enhance customer experience. Restaurants can replace traditional printed menus with a modern, QR-based solution.",
-    stack: "Express.js, REST APIs, Next.js,Mongoose, Tanstack, JWT",
+    description:
+      "DigiMenu is a smart, mobile-friendly digital menu platform designed to simplify restaurant operations and enhance customer experience. Restaurants can replace traditional printed menus with a modern, QR-based solution.",
+    stack: "Express.js, REST APIs, Next.js, Mongoose, Tanstack, JWT",
     screenshots: ["/digimenu-1.jpeg", "/digimenu-2.jpeg", "/digimenu-3.jpeg"],
   },
   {
     id: 2,
     title: "click2sponsor",
-    duration: "2024 - 2025",
+    link: "https://github.com/ShrivastvAryan/Sponsor",
     role: "Backend Development",
-    description: "click2sponsor — the ultimate platform that helps you discover potential sponsors and email them all with a single click.",
-    stack: "Express.js, Rest APIs, Mongoose, Nodemailer",
+    description:
+      "click2sponsor — the ultimate platform that helps you discover potential sponsors and email them all with a single click.",
+    stack: "Express.js, REST APIs, Mongoose, Nodemailer",
     screenshots: ["/click2-1.jpeg", "/click2-2.jpeg", "/click2-3.jpeg"],
   },
-   {
+  {
     id: 3,
     title: "Conscious",
-    duration: "2024 - 2025",
+    link: "https://github.com/ShrivastvAryan/mvp",
     role: "Full Stack Development",
-    description: "click2sponsor — the ultimate platform that helps you discover potential sponsors and email them all with a single click.",
-    stack: "Express.js, Rest APIs, Mongoose, JWT, Tanstack",
+    description:
+      "A full-stack web application designed and developed to showcase handicrafts and cultural products.",
+    stack: "Express.js, REST APIs, Mongoose, JWT, Tanstack",
     screenshots: ["/concious-1.png", "/concious-2.png", "/concious-3.png"],
   },
-]
+];
 
 export default function PortfolioCarousel() {
   return (
@@ -65,9 +68,22 @@ export default function PortfolioCarousel() {
                   
                   {/* Left Column: Title & Date */}
                   <div className="space-y-1">
-                    <h3 className="text-2xl font-medium tracking-tight">{project.title}</h3>
-                    <p className="text-gray-400 text-sm italic font-light">• {project.duration}</p>
-                  </div>
+  <a
+    href={project.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group inline-flex items-center gap-2"
+  >
+    <h3 className="text-2xl font-medium tracking-tight hover:text-gray-600 transition-colors">
+      {project.title}
+    </h3>
+
+    <ArrowUpRight
+      size={18}
+      className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+    />
+  </a>
+</div>
 
                   {/* Middle Column: Details & Previews */}
                   <div className="space-y-6">
@@ -120,7 +136,9 @@ export default function PortfolioCarousel() {
           <span className="text-gray-400 text-sm">Check out More</span>
           <div className="flex items-center gap-2 font-medium">
             <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
-            <span>View More</span>
+            <a href='https://github.com/ShrivastvAryan' target="_blank"  rel="noopener noreferrer">
+           <span>View More</span>
+            </a>
           </div>
         </div>
 
