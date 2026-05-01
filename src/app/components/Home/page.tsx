@@ -13,7 +13,7 @@ export default function PortfolioHero() {
       <div className="container mx-auto px-6 lg:px-20 min-h-screen flex flex-col lg:flex-row items-center justify-between pt-20 lg:pt-0">
         
         {/* Left Content Column */}
-        <div className="w-full lg:w-1/2 z-10 space-y-12 flex flex-col items-start lg:items-center justify-start lg:justify-center">
+        <div className="w-full lg:w-1/2 z-10 space-y-12 flex flex-col lg:items-start items-center lg:justify-start justify-center">
 
           {/* Headline */}
           <div className="space-y-4">

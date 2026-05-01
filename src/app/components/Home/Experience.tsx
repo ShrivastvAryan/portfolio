@@ -69,11 +69,11 @@ const education = [
 
 export default function ExperienceSection() {
   return (
-    <section className="bg-white py-24 px-6 lg:px-20 text-[#1A1A1A]">
+    <section className="bg-white pt-12 lg:pt-16 pb-8 lg:py-24 px-6 lg:px-20 text-[#1A1A1A]">
       <div className="container mx-auto">
         
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row justify-between items-start mb-20 gap-8">
+        <div className="flex flex-col md:flex-row justify-between items-start mb-10 lg:mb-20 gap-8">
           <div className="space-y-4">
             <ScrollReveal>
               <div className="flex items-center gap-2 text-sm">
@@ -82,7 +82,7 @@ export default function ExperienceSection() {
               </div>
             </ScrollReveal>
             <ScrollReveal delay={0.1}>
-              <h2 className="text-5xl font-medium tracking-tight max-w-md leading-tight">
+              <h2 className="text-3xl md:text-5xl font-medium tracking-tight max-w-md leading-tight">
                 Explore My Journey
               </h2>
             </ScrollReveal>
@@ -110,11 +110,11 @@ export default function ExperienceSection() {
         <div className="divide-y  divide-gray-100">
           {experiences.map((exp, index) => (
             <ScrollReveal key={index} delay={index * 0.1}>
-              <div className="py-15 first:pt-0 last:pb-0">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+              <div className="py-12 lg:py-15 first:pt-0 last:pb-0">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-3 lg:gap-6 items-start">
                   
                   {/* Left: Company & Date */}
-                  <div className="md:col-span-5 py-5">
+                  <div className="md:col-span-5 py-3 lg:py-5">
                     <h3 className="text-xl font-medium">{exp.company}</h3>
                     <p className="text-gray-400 text-sm mt-2">• {exp.period}</p>
                   </div>
@@ -150,9 +150,9 @@ export default function ExperienceSection() {
           ))}
         </div>
 
-       <div className='mt-16 space-y-4'>
+       <div className='mt-8 lg:mt-16 space-y-4'>
         <ScrollReveal>
-          <p className='py-6 text-3xl font-medium tracking-tight max-w-md leading-tight'>
+          <p className='py-2 lg:py-6 text-3xl font-medium tracking-tight max-w-md leading-tight'>
             Education
           </p>
         </ScrollReveal>
@@ -163,13 +163,13 @@ export default function ExperienceSection() {
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
                   
                   {/* Left: Company & Date */}
-                  <div className="md:col-span-5 py-5">
+                  <div className="md:col-span-5 pb-2 pt-3 lg:py-5">
                     <h3 className="text-xl font-medium">{exp.school}</h3>
                     <p className="text-gray-400 text-sm mt-2">• {exp.period}</p>
                   </div>
 
                   {/* Middle: Role */}
-                  <div className="md:col-span-4 py-5">
+                  <div className="md:col-span-4 py-0 lg:py-5">
                     <div className="md:col-span-4">
                       <div className="text-gray-400 text-sm leading-relaxed max-w-[350px] space-y-1">
                         {exp.role.map((item, i) => (

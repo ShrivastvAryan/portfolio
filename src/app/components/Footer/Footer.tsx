@@ -21,7 +21,7 @@ export default function Footer() {
   return (
     <footer className="w-full font-sans">
       {/* Top CTA Section */}
-      <div className="bg-[#F6F6F6] py-32 px-6 flex flex-col items-center text-center">
+      <div className="bg-[#F6F6F6] py-12 lg:py-32 px-6 flex flex-col items-center text-center">
         <h2 className="text-4xl md:text-6xl font-medium tracking-tight text-[#1A1A1A] mb-6">
           Interested in My Journey?
         </h2>
