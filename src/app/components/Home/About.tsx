@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Globe, Sparkles, ArrowUpRight, Code } from 'lucide-react';
+import { Globe, Sparkles, ArrowUpRight, Code, SquareCode } from 'lucide-react';
 import ScrollReveal from '../ScrollReveal';
 import Link from 'next/link';
 
@@ -9,7 +9,7 @@ export default function AboutSection() {
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
         
         {/* Left Column: Heading & Intro */}
-        <div className="md:col-span-4 space-y-6 pt-10">
+        <div className="md:col-span-4 space-y-6 lg:pt-10">
           <ScrollReveal>
             <h2 className="text-5xl font-medium tracking-tight">About Me</h2>
           </ScrollReveal>
@@ -22,7 +22,7 @@ export default function AboutSection() {
         </div>
 
         {/* Middle Column: The Stat Card */}
-        <div className="md:col-span-4 bg-white rounded-3xl p-10 shadow-sm space-y-8 flex flex-col items-center text-center">
+        <div className="md:col-span-4 bg-white rounded-3xl p-5 lg:p-10 shadow-sm space-y-8 flex flex-col items-center text-center">
           <ScrollReveal delay={0.1}>
             <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center border border-gray-200 shadow-inner">
                <Code />
@@ -30,14 +30,13 @@ export default function AboutSection() {
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
             <div>
-              <h3 className="text-7xl font-normal tracking-tighter">Tech Stack</h3>
-              
+              <h3 className=" text-4xl lg:text-7xl font-normal tracking-tighter">Tech Stack</h3>
             </div>
           </ScrollReveal>
         <ScrollReveal delay={0.3} className="w-full">
-  <div className="flex flex-wrap justify-center gap-3 py-4">
+  <div className="flex flex-wrap justify-center gap-2 lg:gap-3 py-2 lg:py-4">
     {[
-      "Next.js", "React.js", "Python", "Machine Learning", 
+      "Next.js", "TypeScript", "Python", "Machine Learning", 
       "Docker", "JWT", "GraphQL", "Supabase", "MongoDB","C++", "Express.js","Git"
     ].map((skill) => (
       <span 
@@ -73,11 +72,11 @@ export default function AboutSection() {
           </ScrollReveal>
 
           {/* Bullet Points */}
-          <div className="space-y-10">
+          <div className="space-y-10 hidden lg:block">
             <ScrollReveal delay={0.3}>
               <div className="flex gap-4 items-start">
                 <div className="mt-1 bg-black rounded-full p-2">
-                  <Sparkles size={16} className="text-white" />
+                  <SquareCode size={16} className="text-white" />
                 </div>
                 <p className="text-gray-500 text-[15px] leading-relaxed">
                  With 2 years of experience, I specialize in building scalable and modern full-stack web applications, having worked on 20+ projects.

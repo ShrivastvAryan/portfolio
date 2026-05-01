@@ -56,10 +56,12 @@ export default function Footer() {
           {/* Email */}
           <div className="relative group">
             <a
-              href="mailto:reachtoaryan29@gmail.com"
-              className="text-4xl md:text-6xl lg:text-7xl font-normal tracking-tighter hover:text-gray-300 transition-colors"
+              href="mailto:me@aryanshrivastava.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-2xl md:text-6xl lg:text-7xl font-normal tracking-tighter hover:text-gray-300 transition-colors"
             >
-              reachtoaryan29@gmail.com
+              me@aryanshrivastava.dev
             </a>
 
             <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-white transition-all duration-500 group-hover:w-full"></span>

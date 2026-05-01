@@ -8,9 +8,21 @@ const experiences = [
     period: "October 2025 - Present",
     role: [
       
-  "Full-stack intern at DashX (Web3), building scalable systems and high-performance UI for production applications.",
-  "Implemented end-to-end integration of On-Ramp and Off-Ramp systems on the frontend, handling real-world payment flows.",
-  "Developed the company's portfolio website from scratch."
+  "Built and scaled Web3-enabled frontend systems with robust API integrations.",
+  "Collaborated with backend teams to integrate APIs and streamline product functionality.",
+  "Implemented end-to-end frontend flows for on-ramp and off-ramp transactions, improving usability and overall user experience.",
+    ],
+    tags: ["Full Stack Developer"],
+    details: null,
+    isActive: true,
+  },
+  {
+    company: "Freelancing",
+    period: "February 2025 - Present",
+    role: ["Developed responsive, high-performance websites for clients using modern frontend technologies.",
+      "Integrated REST APIs to deliver dynamic and data-driven user experiences.",
+      "Built clean and maintainable interfaces using Next.js, Tailwind CSS, and shadcn/ui.",
+      "Customized websites based on client requirements with a focus on responsiveness and performance."
     ],
     tags: ["Full Stack Developer"],
     details: null,
@@ -20,30 +32,22 @@ const experiences = [
     company: "GeekRoom",
     period: "April 2025 - Present",
     role: [
-      "Organised hackathons.",
-      "Contributed in developing websites for hackathons.",
-    ],
-    tags: ["Developer", "UIUX", "Event Management"],
-    isActive: true,
-  },
-  {
-    company: "Freelancing",
-    period: "February 2025 - Present",
-    role: ["Innovated designs, New York, Senior Product Designer"],
-    tags: ["Full Stack Developer"],
-    details: null,
+  "Organized and managed hackathons, handling end-to-end coordination and execution.",
+  "Contributed to the development of hackathon websites, improving user experience and functionality.",
+  "Mentored participants during a GeekRoom hackathon, providing technical guidance and project support."
+],
+    tags: ["Developer", "UI/UX", "Event Management"],
     isActive: true,
   },
 ];
 
 const education = [
   {
-    school: "Dr. Akhilesh Das Gupta Institute of Professional Studies",
+    school: "Guru Gobind Singh Indraprastha University",
     period: "2024-2028",
     role: [
       "Grade:8.5 CGPA",
       "Geek Room (Core Member)",
-      "GFG (UI/UX Designer)"
     ],
     tags: ["B.Tech DS-AI"],
     details: null,
