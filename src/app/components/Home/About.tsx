@@ -79,7 +79,7 @@ export default function AboutSection() {
                   <SquareCode size={16} className="text-white" />
                 </div>
                 <p className="text-gray-500 text-[15px] leading-relaxed">
-                 With 2 years of experience, I specialize in building scalable and modern full-stack web applications, having worked on 20+ projects.
+                I build scalable, modern full-stack web applications with a strong focus on performance, maintainability, and clean architecture.
                 </p>
               </div>
             </ScrollReveal>

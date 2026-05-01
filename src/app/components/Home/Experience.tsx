@@ -6,8 +6,8 @@ const experiences = [
   {
     company: "DashX",
     period: "October 2025 - Present",
+    position:"Internship",
     role: [
-      
   "Built and scaled Web3-enabled frontend systems with robust API integrations.",
   "Collaborated with backend teams to integrate APIs and streamline product functionality.",
   "Implemented end-to-end frontend flows for on-ramp and off-ramp transactions, improving usability and overall user experience.",
@@ -19,6 +19,7 @@ const experiences = [
   {
     company: "Freelancing",
     period: "February 2025 - Present",
+    position:"",
     role: ["Developed responsive, high-performance websites for clients using modern frontend technologies.",
       "Integrated REST APIs to deliver dynamic and data-driven user experiences.",
       "Built clean and maintainable interfaces using Next.js, Tailwind CSS, and shadcn/ui.",
@@ -31,6 +32,7 @@ const experiences = [
   {
     company: "GeekRoom",
     period: "April 2025 - Present",
+    position:"Core Member",
     role: [
   "Organized and managed hackathons, handling end-to-end coordination and execution.",
   "Contributed to the development of hackathon websites, improving user experience and functionality.",
@@ -90,7 +92,7 @@ export default function ExperienceSection() {
           <div className="max-w-xs space-y-4">
             <ScrollReveal delay={0.2}>
               <p className="text-gray-500 text-sm leading-relaxed">
-                Over the past 2 years, I've had the opportunity to work on a wide range of projects, collaborating with diverse teams.
+                I&apos;ve worked across different teams, adapting to varied workflows and contributing to projects from idea to deployment.
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.3}>
@@ -115,7 +117,14 @@ export default function ExperienceSection() {
                   
                   {/* Left: Company & Date */}
                   <div className="md:col-span-5 py-3 lg:py-5">
-                    <h3 className="text-xl font-medium">{exp.company}</h3>
+                   <h3 className="text-xl font-medium">
+                      {exp.company}
+                      {exp.position && (
+                      <span className="text-gray-400 text-sm font-light">
+                        {" "}({exp.position})
+                      </span>
+                      )}
+</h3>
                     <p className="text-gray-400 text-sm mt-2">• {exp.period}</p>
                   </div>
 
