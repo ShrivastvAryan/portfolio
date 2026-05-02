@@ -113,7 +113,7 @@ export default function ExperienceSection() {
           {experiences.map((exp, index) => (
             <ScrollReveal key={index} delay={index * 0.1}>
               <div className="py-12 lg:py-15 first:pt-0 last:pb-0">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-3 lg:gap-6 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-6 items-start">
                   
                   {/* Left: Company & Date */}
                   <div className="md:col-span-5 py-3 lg:py-5">
@@ -169,7 +169,7 @@ export default function ExperienceSection() {
           {education.map((exp, index) => (
             <ScrollReveal key={index} delay={index * 0.1}>
               <div className="py-10 first:pt-0 last:pb-0">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                   
                   {/* Left: Company & Date */}
                   <div className="md:col-span-5 pb-2 pt-3 lg:py-5">

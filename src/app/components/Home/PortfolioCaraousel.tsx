@@ -65,7 +65,7 @@ export default function PortfolioCarousel() {
             <span className="w-2 h-2 bg-black rounded-full animate-pulse"></span>
             <span className="text-[10px] uppercase tracking-widest font-semibold">Portfolio</span>
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-7xl font-medium tracking-tight">
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-medium tracking-tight">
             Latest Works
           </h2>
         </div>

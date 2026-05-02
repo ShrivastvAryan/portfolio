@@ -6,12 +6,12 @@ import Link from 'next/link';
 export default function AboutSection() {
   return (
     <section className="bg-[#F6F6F6] pt-24 pb-8 lg:py-24 px-6 lg:px-20 font-sans text-[#1A1A1A]">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-12 gap-8">
+      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-12 lg:gap-8 ">
         
         {/* Left Column: Heading & Intro */}
-        <div className="md:col-span-4 space-y-6 lg:pt-10 flex flex-col items-center justify-center">
+        <div className="lg:col-span-4 space-y-6 w-full lg:pt-10 flex flex-col items-center md:mb-8 lg:mb-0 justify-center">
           <ScrollReveal>
-            <h2 className="text-5xl font-medium tracking-tight">About Me</h2>
+            <h2 className="text-5xl md:text-7xl lg:text-5xl font-medium tracking-tight">About Me</h2>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
             <p className="text-gray-500 leading-relaxed max-w-sm text-center">
@@ -51,7 +51,7 @@ export default function AboutSection() {
         </div>
 
         {/* Right Column: Mini Image & Bullet Points */}
-        <div className="md:col-span-4 space-y-2 lg:space-y-12 flex gap-4 lg:gap-0 fle-row lg:flex-col justify-between h-full">
+        <div className="lg:col-span-4 space-y-2 md:mt-8 lg:mt-0 lg:space-y-12 flex gap-4 lg:gap-0 flex-row lg:flex-col justify-between h-full">
           {/* Top Profile with Arrow Overlay */}
           <ScrollReveal delay={0.2} className="self-end">
             <Link href='https://github.com/ShrivastvAryan' target='_blank'>
@@ -72,10 +72,10 @@ export default function AboutSection() {
           </ScrollReveal>
 
           {/* Bullet Points */}
-          <div className="space-y-10">
+          <div className="space-y-10 flex items-center">
             <ScrollReveal delay={0.3}>
-              <div className="flex gap-4 items-start">
-                <div className="mt-1 bg-black rounded-full p-2 hidden lg:block">
+              <div className="flex gap-4  items-start">
+                <div className="md:mt-3 lg:mt-1 bg-black rounded-full p-2 hidden lg:block">
                   <SquareCode size={16} className="text-white" />
                 </div>
                 <p className="text-gray-500 text-[15px] leading-relaxed">
