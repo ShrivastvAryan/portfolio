@@ -7,11 +7,11 @@ const experiences = [
     company: "DashX",
     period: "October 2025 - Present",
     position:"Internship",
-    role: [
-  "Built and scaled Web3-enabled frontend systems with robust API integrations.",
-  "Collaborated with backend teams to integrate APIs and streamline product functionality.",
-  "Implemented end-to-end frontend flows for on-ramp and off-ramp transactions, improving usability and overall user experience.",
-    ],
+   role: [
+  "Engineered Web3-enabled frontend systems with scalable, high-performance API integrations.",
+  "Led end-to-end implementation of on-ramp and off-ramp transaction flows, optimizing usability and conversion.",
+  "Integrated international on-ramp and off-ramp solutions with seamless backend API orchestration for cross-border transactions.",
+],
     tags: ["Full Stack Developer"],
     details: null,
     isActive: true,
@@ -138,7 +138,7 @@ export default function ExperienceSection() {
                   </div>
 
                   {/* Right: Tags */}
-                  <div className="md:col-span-3 flex justify-end gap-2 py-5">
+                  <div className="md:col-span-3 flex flex-wrap justify-end gap-2 py-5">
                     {exp.tags.map(tag => (
                       <span key={tag} className={`px-4 py-1.5 rounded-full text-[10px] font-medium uppercase tracking-wider ${exp.isActive ? 'bg-black text-white' : 'bg-gray-100 text-gray-500'}`}>
                         {tag}

@@ -36,7 +36,7 @@ export default function Footer() {
 
       {/* Bottom Black Bar */}
       <div className="bg-[#141414] text-white py-12 lg:py-20 px-6 lg:px-20">
-        <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center gap-12">
+        <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center gap-6 md:gap-12">
           
           {/* Navigation */}
           <nav className="flex items-center gap-4 md:gap-8 text-sm font-medium text-gray-400">
@@ -59,7 +59,7 @@ export default function Footer() {
               href="mailto:me@aryanshrivastava.dev"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-2xl md:text-6xl lg:text-7xl font-normal tracking-tighter hover:text-gray-300 transition-colors"
+              className="text-2xl md:text-6xl xl:text-7xl font-normal tracking-tighter hover:text-gray-300 transition-colors"
             >
               me@aryanshrivastava.dev
             </a>

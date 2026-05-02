@@ -56,7 +56,7 @@ const sideProjects = [
 
 export default function PortfolioCarousel() {
   return (
-    <section className="bg-[#F9F9F9] py-16 md:py-24 px-4 sm:px-6 lg:px-20 text-[#1A1A1A] overflow-hidden">
+    <section className="bg-[#F9F9F9] py-8 md:py-24 px-4 sm:px-6 lg:px-20 text-[#1A1A1A] overflow-hidden">
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}
@@ -171,8 +171,7 @@ export default function PortfolioCarousel() {
         </Tabs>
 
         {/* Responsive Footer Link */}
-        <div className="mt-20 flex flex-col sm:flex-row justify-center items-center gap-4 group">
-          <span className="text-gray-400 text-sm">Want to see the source code?</span>
+        <div className="mt-6 flex flex-col sm:flex-row justify-center items-center gap-4 group">
           <a 
             href="https://github.com/ShrivastvAryan" 
             target="_blank" 

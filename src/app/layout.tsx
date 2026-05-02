@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/Navbar/Navbar";
 import { cn } from "@/lib/utils";
 import Footer from "./components/Footer/Footer";
 import { Ubuntu } from "next/font/google";
@@ -25,8 +24,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dev Aryan",
-  description: "Hi, I'm Aryan! A Developer passionate about building cool and innovative web applications.",
+  title: "Aryan | Software Developer",
+  description: "Hi, I'm Aryan! A Developer passionate about building cool and innovative applications.",
 };
 
 export default function RootLayout({
