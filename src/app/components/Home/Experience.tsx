@@ -55,18 +55,6 @@ const education = [
     details: null,
     isActive: true,
   },
-  {
-    school: "Brilliants' Convent",
-    period: "2017-2023",
-    role: [
-      "CBSE national level science project (Co-Developer)",
-      "Vice Captain",
-      "Mr. Brilliantian (2023 Batch)",
-    ],
-    tags: ["High School Diploma"],
-    details: null,
-    isActive: false,
-  },
 ];
 
 export default function ExperienceSection() {

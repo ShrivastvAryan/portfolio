@@ -33,12 +33,12 @@ export default function PortfolioHero() {
         </div>
 
         {/* Right Image Column */}
-        <div className="w-full xl:w-[50%] relative h-[400px] md:h-[800px] xl:h-screen mt-6 md:mt-0">
+        <div className="w-full xl:w-[50%] relative h-[400px] md:h-[600px] xl:h-screen mt-6 md:mt-0">
           <Image
-            src="/removed-bg.png" 
+            src="/pfp.jpeg" 
             alt="D.Nova Portrait"
             fill
-            className="object-contain object-bottom grayscale contrast-[1.1]"
+            className="object-cover object-center grayscale contrast-[1.1]"
             priority
           />
         </div>
