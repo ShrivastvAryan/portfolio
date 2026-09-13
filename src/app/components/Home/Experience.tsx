@@ -59,7 +59,7 @@ const education = [
 
 export default function ExperienceSection() {
   return (
-    <section className="bg-white pt-12 lg:pt-16 pb-8 lg:py-24 px-6 lg:px-20 text-[#1A1A1A]">
+    <section id="experience" aria-label="Experience and Background" className="bg-white pt-12 lg:pt-16 pb-8 lg:py-24 px-6 lg:px-20 text-[#1A1A1A]">
       <div className="container mx-auto">
         
         {/* Header Section */}
@@ -67,7 +67,7 @@ export default function ExperienceSection() {
           <div className="space-y-4">
             <ScrollReveal>
               <div className="flex items-center gap-2 text-sm">
-                <span className="w-2 h-2 bg-black rounded-full"></span>
+                <span className="w-2 h-2 bg-black rounded-full" aria-hidden="true"></span>
                 <span className="text-gray-500 uppercase tracking-widest text-[10px]">Experiences</span>
               </div>
             </ScrollReveal>
@@ -88,9 +88,10 @@ export default function ExperienceSection() {
                 href="https://www.linkedin.com/in/aryanshrivastava290605/"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Visit Aryan Shrivastava on LinkedIn"
                 className="inline-flex items-center gap-1 font-medium border-b border-black pb-1 hover:text-blue-600 transition-opacity"
               >
-                LinkedIn <ArrowUpRight size={16} />
+                LinkedIn <ArrowUpRight size={16} aria-hidden="true" />
               </Link>
             </ScrollReveal>
           </div>
@@ -147,11 +148,11 @@ export default function ExperienceSection() {
           ))}
         </div>
 
-       <div className='mt-8 lg:mt-16 space-y-4'>
+       <div id="education" className='mt-8 lg:mt-16 space-y-4'>
         <ScrollReveal>
-          <p className='py-2 lg:py-6 text-3xl font-medium tracking-tight max-w-md leading-tight'>
+          <h3 className='py-2 lg:py-6 text-3xl font-medium tracking-tight max-w-md leading-tight'>
             Education
-          </p>
+          </h3>
         </ScrollReveal>
         <div className="divide-y divide-gray-100">
           {education.map((exp, index) => (

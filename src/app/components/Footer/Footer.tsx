@@ -1,5 +1,3 @@
-import { ArrowUpRight } from "lucide-react";
-import Link from "next/link";
 import ResumeDownloadButton from "../Resume/resume";
 
 export default function Footer() {
@@ -19,7 +17,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="w-full font-sans">
+    <footer id="contact" aria-label="Contact and Socials" className="w-full font-sans">
       {/* Top CTA Section */}
       <div className="bg-[#F6F6F6] py-12 lg:py-32 px-6 flex flex-col items-center text-center">
         <h2 className="text-4xl md:text-6xl font-medium tracking-tight text-[#1A1A1A] mb-6">
@@ -31,21 +29,21 @@ export default function Footer() {
           hands-on projects, technical stack, and problem-solving approach.
         </p>
 
-       <ResumeDownloadButton/>
+        <ResumeDownloadButton />
       </div>
 
       {/* Bottom Black Bar */}
       <div className="bg-[#141414] text-white py-12 lg:py-20 px-6 lg:px-20">
         <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center gap-6 md:gap-12">
-          
           {/* Navigation */}
-          <nav className="flex items-center gap-4 md:gap-8 text-sm font-medium text-gray-400">
+          <nav aria-label="Social Profiles" className="flex items-center gap-4 md:gap-8 text-sm font-medium text-gray-400">
             {navItems.map(({ label, href }) => (
               <a
                 key={label}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={`Visit Aryan Shrivastava on ${label}`}
                 className="hover:text-white transition-colors"
               >
                 {label}
@@ -57,8 +55,7 @@ export default function Footer() {
           <div className="relative group">
             <a
               href="mailto:me@aryanshrivastava.dev"
-              target="_blank"
-              rel="noopener noreferrer"
+              aria-label="Send email to Aryan Shrivastava"
               className="text-2xl md:text-6xl xl:text-7xl font-normal tracking-tighter hover:text-gray-300 transition-colors"
             >
               me@aryanshrivastava.dev
