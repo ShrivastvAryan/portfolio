@@ -56,7 +56,7 @@ const sideProjects = [
 
 export default function PortfolioCarousel() {
   return (
-    <section id="projects" aria-label="Projects and Portfolio" className="bg-[#F9F9F9] py-8 md:py-24 px-4 sm:px-6 lg:px-20 text-[#1A1A1A] overflow-hidden">
+    <section className="bg-[#F9F9F9] py-8 md:py-24 px-4 sm:px-6 lg:px-20 text-[#1A1A1A] overflow-hidden">
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}
@@ -142,7 +142,6 @@ export default function PortfolioCarousel() {
                                   src={src}
                                   alt={`${project.title} preview ${idx + 1}`}
                                   fill
-                                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                   className="object-cover opacity-90 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105"
                                 />
                               </div>
