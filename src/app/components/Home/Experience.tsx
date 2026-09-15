@@ -1,8 +1,12 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import ScrollReveal from "../ScrollReveal";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface ExperienceItem {
   company: string;
@@ -26,7 +30,7 @@ const experiences: ExperienceItem[] = [
   {
     company: "DashX",
     period: "2025 - Present",
-    position: "Full Stack Developer · Internship",
+    position: "Software Developer",
     description:
       "Engineered Web3-enabled frontend systems with scalable, high-performance API integrations. Led end-to-end implementation of on-ramp and off-ramp transaction flows, optimizing usability, cross-border payments, and conversion.",
     link: "https://dashx.xyz/",
@@ -64,67 +68,125 @@ const educationList: EducationItem[] = [
 ];
 
 export default function ExperienceSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const expHeadingRef = useRef<HTMLHeadingElement>(null);
+  const expItemsRef = useRef<HTMLDivElement>(null);
+  const eduHeadingRef = useRef<HTMLHeadingElement>(null);
+  const eduItemsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const animate = (
+        headingEl: HTMLElement | null,
+        itemsEl: HTMLElement | null,
+        selector: string
+      ) => {
+        if (headingEl) {
+          gsap.fromTo(
+            headingEl,
+            { x: -60, opacity: 0 },
+            {
+              x: 0,
+              opacity: 1,
+              duration: 0.9,
+              ease: "power4.out",
+              scrollTrigger: {
+                trigger: headingEl,
+                start: "top 85%",
+                toggleActions: "play none none none",
+              },
+            }
+          );
+        }
+        if (itemsEl) {
+          const items = itemsEl.querySelectorAll(selector);
+          gsap.fromTo(
+            items,
+            { y: 50, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.7,
+              ease: "power3.out",
+              stagger: 0.12,
+              scrollTrigger: {
+                trigger: itemsEl,
+                start: "top 82%",
+                toggleActions: "play none none none",
+              },
+            }
+          );
+        }
+      };
+
+      animate(expHeadingRef.current, expItemsRef.current, ".exp-item");
+      animate(eduHeadingRef.current, eduItemsRef.current, ".edu-item");
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="experience"
       className="bg-[#0B0B0B] text-white py-20 md:py-32 px-6 md:px-12 lg:px-20 font-sans border-t border-white/5"
     >
       <div className="max-w-7xl mx-auto space-y-24 md:space-y-36">
         {/* ================= EXPERIENCE SECTION ================= */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Column: EXPERIENCE Heading & Dot */}
+          {/* Left Column: EXPERIENCE Heading */}
           <div className="lg:col-span-4 lg:sticky lg:top-24">
-            <ScrollReveal>
-              <div className="flex items-center justify-between lg:block">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-white font-[family-name:var(--font-ubuntu)] leading-none">
-                  EXPERIENCE
-                </h2>
-              </div>
-            </ScrollReveal>
+            <div className="flex items-center justify-between lg:block">
+              <h2
+                ref={expHeadingRef}
+                className="text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-white font-[family-name:var(--font-ubuntu)] leading-none"
+              >
+                EXPERIENCE
+              </h2>
+            </div>
           </div>
 
           {/* Right Column: Experience Items */}
-          <div className="lg:col-span-8 space-y-12 md:space-y-14">
+          <div ref={expItemsRef} className="lg:col-span-8 space-y-12 md:space-y-14">
             {experiences.map((exp, index) => (
-              <ScrollReveal key={index} delay={index * 0.1}>
-                <div className="group pb-10 border-b border-white/10 last:border-b-0 last:pb-0">
-                  {/* Header Row: Company + Period */}
-                  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
-                    <h3 className="text-xl md:text-2xl font-bold uppercase tracking-tight text-white font-[family-name:var(--font-ubuntu)]">
-                      {exp.company}
-                    </h3>
-                    <span className="text-sm md:text-base text-gray-400 font-normal">
-                      {exp.period}
-                    </span>
-                  </div>
+              <div key={index} className="exp-item group pb-10 border-b border-white/10 last:border-b-0 last:pb-0">
+                {/* Header Row: Company + Period */}
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+                  <h3 className="text-xl md:text-2xl font-bold uppercase tracking-tight text-white font-[family-name:var(--font-ubuntu)]">
+                    {exp.company}
+                  </h3>
+                  <span className="text-sm md:text-base text-gray-400 font-normal">
+                    {exp.period}
+                  </span>
+                </div>
 
-                  {/* Position / Role */}
-                  <p className="mt-2 text-base md:text-lg font-medium text-white/90">
-                    {exp.position}
+                {/* Position / Role */}
+                <p className="mt-2 text-base md:text-lg font-medium text-white/90">
+                  {exp.position}
+                </p>
+
+                {/* Description & See More action */}
+                <div className="mt-3 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                  <p className="text-sm md:text-base text-gray-400 leading-relaxed max-w-2xl font-normal">
+                    {exp.description}
                   </p>
 
-                  {/* Description & See More action */}
-                  <div className="mt-3 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                    <p className="text-sm md:text-base text-gray-400 leading-relaxed max-w-2xl font-normal">
-                      {exp.description}
-                    </p>
-
-                    {exp.link && (
-                      <div className="shrink-0 md:self-end">
-                        <Link
-                          href={exp.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="cursor-target inline-flex items-center gap-1 text-xs md:text-sm font-bold tracking-wider text-white uppercase hover:text-gray-300 transition-colors"
-                        >
-                          {exp.linkText || "SEE MORE"}{" "}
-                          <ArrowUpRight className="w-4 h-4 ml-0.5" />
-                        </Link>
-                      </div>
-                    )}
-                  </div>
+                  {exp.link && (
+                    <div className="shrink-0 md:self-end">
+                      <Link
+                        href={exp.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="cursor-target inline-flex items-center gap-1 text-xs md:text-sm font-bold tracking-wider text-white uppercase hover:text-gray-300 transition-colors"
+                      >
+                        {exp.linkText || "SEE MORE"}{" "}
+                        <ArrowUpRight className="w-4 h-4 ml-0.5" />
+                      </Link>
+                    </div>
+                  )}
                 </div>
-              </ScrollReveal>
+              </div>
             ))}
           </div>
         </div>
@@ -133,57 +195,56 @@ export default function ExperienceSection() {
         <div id="education" className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start pt-16 md:pt-24 border-t border-white/10">
           {/* Left Column: EDUCATION Heading */}
           <div className="lg:col-span-4 lg:sticky lg:top-24">
-            <ScrollReveal>
-              <div className="flex items-center justify-between lg:block">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-white font-[family-name:var(--font-ubuntu)] leading-none">
-                  EDUCATION
-                </h2>
-              </div>
-            </ScrollReveal>
+            <div className="flex items-center justify-between lg:block">
+              <h2
+                ref={eduHeadingRef}
+                className="text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-white font-[family-name:var(--font-ubuntu)] leading-none"
+              >
+                EDUCATION
+              </h2>
+            </div>
           </div>
 
           {/* Right Column: Education Items */}
-          <div className="lg:col-span-8 space-y-12 md:space-y-14">
+          <div ref={eduItemsRef} className="lg:col-span-8 space-y-12 md:space-y-14">
             {educationList.map((edu, index) => (
-              <ScrollReveal key={index} delay={index * 0.1}>
-                <div className="group pb-10 border-b border-white/10 last:border-b-0 last:pb-0">
-                  {/* Header Row: Degree + Period */}
-                  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
-                    <h3 className="text-xl md:text-2xl font-bold uppercase tracking-tight text-white font-[family-name:var(--font-ubuntu)]">
-                      {edu.degree}
-                    </h3>
-                    <span className="text-sm md:text-base text-gray-400 font-normal">
-                      {edu.period}
-                    </span>
-                  </div>
+              <div key={index} className="edu-item group pb-10 border-b border-white/10 last:border-b-0 last:pb-0">
+                {/* Header Row: Degree + Period */}
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+                  <h3 className="text-xl md:text-2xl font-bold uppercase tracking-tight text-white font-[family-name:var(--font-ubuntu)]">
+                    {edu.degree}
+                  </h3>
+                  <span className="text-sm md:text-base text-gray-400 font-normal">
+                    {edu.period}
+                  </span>
+                </div>
 
-                  {/* Institution */}
-                  <p className="mt-2 text-base md:text-lg font-medium text-white/90">
-                    {edu.institution}
+                {/* Institution */}
+                <p className="mt-2 text-base md:text-lg font-medium text-white/90">
+                  {edu.institution}
+                </p>
+
+                {/* Description */}
+                <div className="mt-3 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                  <p className="text-sm md:text-base text-gray-400 leading-relaxed max-w-2xl font-normal">
+                    {edu.description}
                   </p>
 
-                  {/* Description */}
-                  <div className="mt-3 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                    <p className="text-sm md:text-base text-gray-400 leading-relaxed max-w-2xl font-normal">
-                      {edu.description}
-                    </p>
-
-                    {edu.link && (
-                      <div className="shrink-0 md:self-end">
-                        <Link
-                          href={edu.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="cursor-target inline-flex items-center gap-1 text-xs md:text-sm font-bold tracking-wider text-white uppercase hover:text-gray-300 transition-colors"
-                        >
-                          {edu.linkText || "SEE MORE"}{" "}
-                          <ArrowUpRight className="w-4 h-4 ml-0.5" />
-                        </Link>
-                      </div>
-                    )}
-                  </div>
+                  {edu.link && (
+                    <div className="shrink-0 md:self-end">
+                      <Link
+                        href={edu.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="cursor-target inline-flex items-center gap-1 text-xs md:text-sm font-bold tracking-wider text-white uppercase hover:text-gray-300 transition-colors"
+                      >
+                        {edu.linkText || "SEE MORE"}{" "}
+                        <ArrowUpRight className="w-4 h-4 ml-0.5" />
+                      </Link>
+                    </div>
+                  )}
                 </div>
-              </ScrollReveal>
+              </div>
             ))}
           </div>
         </div>

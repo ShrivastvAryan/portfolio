@@ -1,12 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import ScrollReveal from "../ScrollReveal";
 import Marquee from "react-fast-marquee";
 import { techStack, TechBadge } from "./techStackData";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface ProjectItem {
   id: number;
@@ -36,8 +40,23 @@ const allProjects: ProjectItem[] = [
     image: "/dashx-1.png",
     link: "https://dashx.xyz/",
   },
-  {
+   {
     id: 2,
+    category: "PROFESSIONAL",
+    title: "SANKET",
+    headline: "Smart Indian Railways Traffic & Maintenance Planning System",
+    description:
+      "Sanket is a mission-critical operations cockpit engineered for Indian Railways section controllers, station masters, and maintenance engineers. Operating railway networks requires coordinating fast-moving high-priority trains with vital civil, electrical, and signaling maintenance tasks.",
+    stack: ["Next.js", "Django", "PostgreSQL", "Redis", "ML Algorithms",],
+    stats: [
+      { value: "99.9%", label: "TRANSACTION SUCCESS" },
+      { value: "3X", label: "SPEED BOOST" },
+    ],
+    image: "/sanket.png",
+    link: "https://github.com/Smart-Railways/backend",
+  },
+  {
+    id: 3,
     category: "PROFESSIONAL",
     title: "CONSCIOUS",
     headline: "Full-stack e-commerce experience showcasing handicrafts & cultural products",
@@ -52,7 +71,7 @@ const allProjects: ProjectItem[] = [
     link: "https://github.com/ShrivastvAryan/mvp",
   },
   {
-    id: 3,
+    id: 4,
     category: "SIDE PROJECTS",
     title: "DIGIMENU",
     headline: "Mobile-first QR digital menu platform simplifying restaurant dining",
@@ -66,33 +85,69 @@ const allProjects: ProjectItem[] = [
     image: "/digimenu-1.jpeg",
     link: "https://github.com/ShrivastvAryan/Vendor-Menu",
   },
-  {
-    id: 4,
-    category: "SIDE PROJECTS",
-    title: "CLICK2SPONSOR",
-    headline: "Automate sponsor discovery and outreach with a single click",
-    description:
-      "Built end-to-end backend workflow automation to find potential event sponsors and automate mass customized outreach with Nodemailer and Express.",
-    stack: ["Express.js", "Nodemailer", "Mongoose", "MongoDB"],
-    stats: [
-      { value: "1-CLICK", label: "OUTREACH" },
-      { value: "500+", label: "SPONSORS INDEXED" },
-    ],
-    image: "/click2-1.jpeg",
-    link: "https://github.com/ShrivastvAryan/Sponsor",
-  },
 ];
 
 export default function PortfolioCarousel() {
   const [activeTab, setActiveTab] = useState<"ALL" | "PROFESSIONAL" | "SIDE PROJECTS">("ALL");
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
 
   const filteredProjects =
     activeTab === "ALL"
       ? allProjects
       : allProjects.filter((p) => p.category === activeTab);
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Heading: each word clips up
+      if (headingRef.current) {
+        gsap.fromTo(
+          headingRef.current,
+          { y: 80, opacity: 0, skewY: 4 },
+          {
+            y: 0,
+            opacity: 1,
+            skewY: 0,
+            duration: 1,
+            ease: "power4.out",
+            scrollTrigger: {
+              trigger: headingRef.current,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+
+      // Cards: staggered slide-up
+      if (cardsRef.current) {
+        const cards = cardsRef.current.querySelectorAll(".project-card");
+        gsap.fromTo(
+          cards,
+          { y: 80, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.75,
+            ease: "power3.out",
+            stagger: 0.15,
+            scrollTrigger: {
+              trigger: cardsRef.current,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [filteredProjects]);
+
   return (
     <section
+      ref={sectionRef}
       id="projects"
       className="bg-[#0B0B0B] text-white py-12 px-6 md:px-12 lg:px-20 font-sans border-t border-white/5"
     >
@@ -104,16 +159,19 @@ export default function PortfolioCarousel() {
             </Marquee>
           </div>
           
-      <div className="max-w-7xl mx-auto pt-12">
+      <div className="max-w-7xl mx-auto pt-16">
         {/* Header Section */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14 md:mb-20">
-          <ScrollReveal>
-            <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-white font-[family-name:var(--font-ubuntu)] leading-[0.88]">
+          <div className="overflow-hidden">
+            <h2
+              ref={headingRef}
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-white font-[family-name:var(--font-ubuntu)] leading-[0.88]"
+            >
               FEATURED<br />WORK
             </h2>
-          </ScrollReveal>
+          </div>
 
-          <ScrollReveal delay={0.1}>
+          <ScrollReveal delay={0.15}>
             <p className="text-gray-400 text-sm sm:text-base md:text-lg leading-relaxed max-w-md lg:max-w-lg font-normal">
               Good design and engineering get out of the way — functional,
               intentional, and built around real people. Here is how I
@@ -122,30 +180,13 @@ export default function PortfolioCarousel() {
           </ScrollReveal>
         </div>
 
-        {/* Filter Tabs */}
-        {/* <ScrollReveal delay={0.15}>
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-12 sm:mb-16">
-            {(["ALL", "PROFESSIONAL", "SIDE PROJECTS"] as const).map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`cursor-target px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-wider uppercase transition-all duration-300 ${
-                  activeTab === tab
-                    ? "bg-white text-black shadow-md scale-105"
-                    : "bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 border border-white/10"
-                }`}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
-        </ScrollReveal> */}
-
         {/* Projects List */}
-        <div className="space-y-16 sm:space-y-24">
-          {filteredProjects.map((project, index) => (
-            <ScrollReveal key={project.id} delay={index * 0.1}>
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center bg-white/[0.02] border border-white/5 rounded-3xl p-6 sm:p-8 lg:p-10 hover:border-white/15 transition-all duration-500">
+        <div ref={cardsRef} className="space-y-16 sm:space-y-16">
+          {filteredProjects.map((project) => (
+            <div
+              key={project.id}
+              className="project-card grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center bg-white/[0.02] border border-white/5 rounded-3xl p-6 sm:p-8 lg:p-10 hover:border-white/15 transition-all duration-500"
+            >
                 {/* Left: Project Preview Image */}
                 <div className="lg:col-span-6 w-full">
                   <Link
@@ -158,7 +199,7 @@ export default function PortfolioCarousel() {
                       src={project.image}
                       alt={`${project.title} Preview`}
                       fill
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="object-contain transition-transform duration-700 ease-out group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <div className="bg-black/60 backdrop-blur-md p-3 rounded-full border border-white/20 text-white">
@@ -172,7 +213,7 @@ export default function PortfolioCarousel() {
                 <div className="lg:col-span-6 flex flex-col justify-between h-full py-2">
                   <div>
                     {/* Project Title */}
-                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold uppercase tracking-tight text-white font-[family-name:var(--font-ubuntu)]">
+                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold uppercase tracking-tight text-white font-[family-name:var(--font-ubuntu)]">
                       {project.title}
                     </h3>
 
@@ -202,7 +243,7 @@ export default function PortfolioCarousel() {
                   {/* Bottom: Metrics & See More Action */}
                   <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-white/10 flex items-end justify-between gap-4">
                     {/* Stats */}
-                    <div className="flex items-center gap-6 sm:gap-10">
+                    {/* <div className="flex items-center gap-6 sm:gap-10">
                       {project.stats.map((stat, sIdx) => (
                         <div key={sIdx}>
                           <span className="block text-2xl sm:text-3xl font-black text-white font-[family-name:var(--font-ubuntu)] leading-none">
@@ -213,7 +254,7 @@ export default function PortfolioCarousel() {
                           </span>
                         </div>
                       ))}
-                    </div>
+                    </div> */}
 
                     {/* Action */}
                     <Link
@@ -227,7 +268,6 @@ export default function PortfolioCarousel() {
                   </div>
                 </div>
               </div>
-            </ScrollReveal>
           ))}
         </div>
 
