@@ -1,48 +1,127 @@
-import Image from 'next/image';
-import ResumeDownloadButton from '../Resume/resume';
+"use client";
+
+import Marquee from "react-fast-marquee";
+
 
 export default function PortfolioHero() {
   return (
-    <main className="relative min-h-screen w-full bg-brand-tertiary text-[#1A1A1A] overflow-hidden selection:bg-black selection:text-white">
+    <main
+      className="relative min-h-[760px] md:min-h-screen w-full overflow-hidden bg-cover bg-center bg-no-repeat text-white"
+      style={{
+        backgroundImage: "url('/bg-image.png')",
+      }}
+    >
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/10" />
+
+      <div className="relative z-10 min-h-[760px] md:min-h-screen px-6 md:px-12 py-8 flex flex-col justify-between">
+        {/* TOP SECTION: BIG NAME + NAVIGATION */}
+        <div>
+          {/* BIG NAME */}
+          <div className="flex flex-col">
+            <div className="flex justify-center gap-x-8 items-center">
+              <h1
+                className="
+                  font-[family-name:var(--font-ubuntu)]
+                  font-bold
+                  uppercase
+                  tracking-[-0.02em]
+                  leading-none
+                  text-[16vw]
+                  md:text-[15vw]
+                  lg:text-[14vw]
+                "
+              >
+                ARYAN
+              </h1>
+
+              <div className="bg-white h-[9vw] w-[18vw] rounded-full my-auto" />
+            </div>
+
+            <div className="relative -mt-[2vw] lg:-mt-[3vw]">
+              <h1
+                className="
+                  font-[family-name:var(--font-ubuntu)]
+                  font-bold
+                  text-center
+                  uppercase
+                  tracking-[-0.02em]
+                  leading-none
+                  text-[16vw]
+                  md:text-[15vw]
+                  lg:text-[14vw]
+                "
+              >
+                SHRIVASTAVA
+              </h1>
+
+              {/* PROFILE IMAGE */}
+              <div
+                className="
+                  absolute
+                  left-[37%]
+                  top-[8%]
+                  w-[25%]
+                  h-[75%]
+                  overflow-hidden
+                  rounded-full
+                "
+              >
+                <img
+                  src="/profile.png"
+                  alt="Aryan"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* NAVIGATION */}
+          <nav className="mt-8 flex justify-end gap-8 md:gap-12 pr-2">
+            <a
+              href="#about"
+              className="cursor-target text-lg md:text-2xl font-medium hover:opacity-60 transition-opacity"
+            >
+              ABOUT
+            </a>
+
+            <a
+              href="#contact"
+              className="cursor-target text-lg md:text-2xl font-medium hover:opacity-60 transition-opacity"
+            >
+              CONTACT ME
+            </a>
+
+            <a
+              href="/Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cursor-target text-lg md:text-2xl font-medium hover:opacity-60 transition-opacity"
+            >
+              RESUME
+            </a>
+          </nav>
+        </div>
+
+        {/* BOTTOM SECTION: INTRO + SINGLE ROW TECH STACK MARQUEE */}
+        <div className="pt-12 pb-4 w-full">
+          <p
+            className="
+              text-xl
+              md:text-3xl
+              lg:text-[2rem]
+              font-medium
+              leading-[1.1]
+              tracking-[-0.03em]
+              max-w-3xl
+            "
+          >
+            I&apos;m a software developer, crafting effortless user
+            experiences across web and app, for the past 3 years.
+          </p>
+
       
-      {/* Sidebar Label (Left) */}
-      <div className="absolute hidden xl:block left-8 top-1/2 -rotate-90 origin-left text-[10px] uppercase tracking-[0.2em] text-gray-400">
-       SOFTWARE DEVELOPER
-      </div>
-
-      <div className="container mx-auto px-6 xl:px-20 min-h-screen flex flex-col xl:flex-row items-center justify-between pt-20 xl:pt-0">
-        
-        {/* Left Content Column */}
-        <div className="w-full xl:w-[50%] z-10 space-y-12 flex flex-col xl:items-start items-center xl:justify-start justify-center">
-
-          {/* Headline */}
-          <div className="space-y-4">
-            <h1 className="text-[120px] md:text-[180px] lg:text-[200px] leading-[0.8] font-normal tracking-tighter">
-              Hello
-            </h1>
-            <p className="text-xl xl:text-xl font-medium tracking-tight flex justify-center xl:items-start xl:justify-start items-center gap-3">
-              <span className="w-8 h-[1px] bg-black hidden xl:block"></span>
-              It's Aryan Shrivastava
-            </p>
-          </div>
-
-          {/* Scroll Indicator */}
-          <div className="pt-0 xl:pt-6">
-           <ResumeDownloadButton/>
-          </div>
         </div>
-
-        {/* Right Image Column */}
-        <div className="w-full xl:w-[50%] relative h-[400px] md:h-[600px] xl:h-screen mt-6 md:mt-0">
-          <Image
-            src="/pfp.jpeg" 
-            alt="D.Nova Portrait"
-            fill
-            className="object-cover object-center grayscale contrast-[1.1]"
-            priority
-          />
-        </div>
-
       </div>
     </main>
   );
