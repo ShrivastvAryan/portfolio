@@ -67,18 +67,16 @@ export default function Footer() {
     <footer
       ref={footerRef}
       id="contact"
-      className="relative w-full overflow-hidden bg-cover bg-center bg-no-repeat min-h-[380px] sm:min-h-[480px] md:min-h-[580px] lg:min-h-[600px] p-6 sm:p-8 flex flex-col justify-end"
+      className="relative w-full overflow-hidden bg-cover bg-center bg-no-repeat min-h-[300px] sm:min-h-[480px] md:min-h-[580px] lg:min-h-[600px] p-6 sm:p-8 flex flex-col justify-end"
       style={{ backgroundImage: "url('/footer.png')" }}
     >
       <div className="w-full mx-auto flex flex-col justify-end">
         {/* Heading — vw-based so it never overflows */}
         <h1
           ref={headingRef}
-          className="font-[family-name:var(--font-ubuntu)] font-extrabold text-center text-white uppercase tracking-tight leading-none"
-          style={{ fontSize: "clamp(2rem, 9.5vw, 11rem)" }}
+          className="font-[family-name:var(--font-ubuntu)] text-[16vw] xl:text-[10vw] font-extrabold lg:text-center text-white uppercase tracking-tight leading-none"
         >
-          <span className="block">LET&apos;S CONNECT</span>
-          <span className="block">:)</span>
+          <span className="block">LET&apos;S CONNECT :)</span>
         </h1>
 
         {/* Navigation Links */}

@@ -41,7 +41,16 @@ export default function RootLayout({
         ubuntu.variable
       )}
     >
-      <body className="min-h-full mx-auto max-w-[1700px] bg-black font-[family-name:var(--font-ubuntu)]">
+      <head>
+        <link
+          rel="preload"
+          as="image"
+          href="/bg-image.png"
+          fetchPriority="high"
+        />
+      </head>
+
+      <body className="min-h-full mx-auto bg-black font-[family-name:var(--font-ubuntu)]">
         <main>{children}</main>
         <Footer />
       </body>

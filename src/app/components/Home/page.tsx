@@ -74,13 +74,13 @@ export default function PortfolioHero() {
   return (
     <main
       ref={sectionRef}
-      className="relative min-h-screen w-full overflow-hidden bg-cover bg-center bg-no-repeat text-white"
+      className="relative min-h-[250px] md:min-h-[450px] lg:min-h-[800px] 2xl:max-h-[1800px] w-full overflow-hidden bg-cover bg-center bg-no-repeat text-white"
       style={{ backgroundImage: "url('/bg-image.png')" }}
     >
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/10" />
 
-      <div className="relative z-10 min-h-screen px-4 sm:px-6 md:px-12 py-6 sm:py-8 flex flex-col justify-between">
+      <div className="relative min-h-[250px] md:min-h-[450px] lg:min-h-[800px] 2xl:max-h-[1800px] z-10 lg:px-12 lg:py-8 flex flex-col items-center justify-center lg:justify-between">
         {/* TOP SECTION */}
         <div>
           {/* BIG NAME */}
@@ -88,7 +88,7 @@ export default function PortfolioHero() {
             <div className="flex justify-center gap-x-3 sm:gap-x-6 md:gap-x-8 items-center overflow-hidden">
               <h1
                 ref={aryanRef}
-                className="font-[family-name:var(--font-ubuntu)] font-bold uppercase tracking-[-0.02em] leading-none text-[17vw] sm:text-[16vw] md:text-[15vw] lg:text-[14vw]"
+                className="font-[family-name:var(--font-ubuntu)] font-bold uppercase tracking-[-0.02em] leading-none text-[13vw] sm:text-[13vw] lg:text-[14vw]"
               >
                 ARYAN
               </h1>
@@ -101,35 +101,26 @@ export default function PortfolioHero() {
             <div className="relative -mt-[2vw] lg:-mt-[3vw] overflow-hidden">
               <h1
                 ref={shrivastavaRef}
-                className="font-[family-name:var(--font-ubuntu)] font-bold text-center uppercase tracking-[-0.02em] leading-none text-[17vw] sm:text-[16vw] md:text-[15vw] lg:text-[14vw]"
+                className="font-[family-name:var(--font-ubuntu)] font-bold text-center uppercase tracking-[-0.02em] leading-none text-[13vw] sm:text-[13vw] lg:text-[14vw]"
               >
                 SHRIVASTAVA
               </h1>
 
               {/* PROFILE IMAGE — hidden on small mobile, visible md+ */}
-              <div
-                ref={profileRef}
-                className="hidden sm:block absolute left-[37%] top-[8%] w-[25%] h-[75%] overflow-hidden rounded-full"
-              >
-                <img
-                  src="/profile.png"
-                  className="h-full w-full object-cover"
-                />
-              </div>
             </div>
           </div>
 
           {/* NAVIGATION */}
-          <nav ref={navRef} className="mt-4 sm:mt-8 flex justify-end gap-4 sm:gap-8 md:gap-12 pr-1 sm:pr-2 flex-wrap">
-            <a
+          <nav ref={navRef} className="mt-4 sm:mt-8 flex text-sm sm:text-lg md:text-2xl lg:text-3xl font-medium justify-center lg:justify-end gap-4 sm:gap-8 md:gap-12 pr-1 sm:pr-2 flex-wrap">
+            {/* <a
               href="#about"
-              className="cursor-target text-sm sm:text-lg md:text-2xl font-medium hover:opacity-60 transition-opacity"
+              className="cursor-target  hover:opacity-60 transition-opacity"
             >
               ABOUT
-            </a>
-            <a
-              href="#contact"
-              className="cursor-target text-sm sm:text-lg md:text-2xl font-medium hover:opacity-60 transition-opacity"
+            </a> */}
+           <a
+              href="mailto:me@aryanshrivastava.dev"
+              className="cursor-target hover:opacity-60 transition-opacity"
             >
               CONTACT ME
             </a>
@@ -137,7 +128,7 @@ export default function PortfolioHero() {
               href="/Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="cursor-target text-sm sm:text-lg md:text-2xl font-medium hover:opacity-60 transition-opacity"
+              className="cursor-target  hover:opacity-60 transition-opacity"
             >
               RESUME
             </a>
@@ -145,10 +136,10 @@ export default function PortfolioHero() {
         </div>
 
         {/* BOTTOM SECTION */}
-        <div className="pt-8 sm:pt-12 pb-4 w-full">
+        <div className=" 2xl:pt-[2vw] pb-4 w-full">
           <p
             ref={introRef}
-            className="text-base sm:text-xl md:text-3xl lg:text-[2rem] font-medium leading-[1.2] tracking-[-0.03em] max-w-3xl"
+            className="text-base hidden lg:text-[2.5rem] lg:block font-medium leading-[1.2] tracking-[-0.03em] max-w-3xl"
           >
             I&apos;m a software developer, crafting effortless user experiences
             across web and app.
