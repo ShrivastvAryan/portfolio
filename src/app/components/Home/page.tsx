@@ -1,48 +1,150 @@
-import Image from 'next/image';
-import ResumeDownloadButton from '../Resume/resume';
+"use client";
+
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function PortfolioHero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const aryanRef = useRef<HTMLHeadingElement>(null);
+  const shrivastavaRef = useRef<HTMLHeadingElement>(null);
+  const pillRef = useRef<HTMLDivElement>(null);
+  const profileRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLElement>(null);
+  const introRef = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+      // Nav slides down
+      tl.fromTo(
+        navRef.current,
+        { y: -40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8 },
+        0
+      );
+
+      // "ARYAN" letters slam in from top
+      tl.fromTo(
+        aryanRef.current,
+        { y: "-120%", opacity: 0, skewY: -6 },
+        { y: "0%", opacity: 1, skewY: 0, duration: 1 },
+        0.15
+      );
+
+      // Pill punches in
+      tl.fromTo(
+        pillRef.current,
+        { scaleX: 0, opacity: 0, transformOrigin: "left center" },
+        { scaleX: 1, opacity: 1, duration: 0.7, ease: "expo.out" },
+        0.35
+      );
+
+      // "SHRIVASTAVA" rises from bottom
+      tl.fromTo(
+        shrivastavaRef.current,
+        { y: "120%", opacity: 0, skewY: 6 },
+        { y: "0%", opacity: 1, skewY: 0, duration: 1 },
+        0.3
+      );
+
+      // Profile image scales + fades in
+      tl.fromTo(
+        profileRef.current,
+        { scale: 0.7, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.9, ease: "back.out(1.4)" },
+        0.55
+      );
+
+      // Intro text fades up
+      tl.fromTo(
+        introRef.current,
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8 },
+        0.75
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <main className="relative min-h-screen w-full bg-brand-tertiary text-[#1A1A1A] overflow-hidden selection:bg-black selection:text-white">
-      
-      {/* Sidebar Label (Left) */}
-      <div className="absolute hidden xl:block left-8 top-1/2 -rotate-90 origin-left text-[10px] uppercase tracking-[0.2em] text-gray-400">
-       SOFTWARE DEVELOPER
-      </div>
+    <main
+      ref={sectionRef}
+      className="relative min-h-[250px] md:min-h-[450px] lg:min-h-[800px] 2xl:max-h-[1800px] w-full overflow-hidden bg-cover bg-center bg-no-repeat text-white"
+      style={{ backgroundImage: "url('/bg-image.png')" }}
+    >
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/10" />
 
-      <div className="container mx-auto px-6 xl:px-20 min-h-screen flex flex-col xl:flex-row items-center justify-between pt-20 xl:pt-0">
-        
-        {/* Left Content Column */}
-        <div className="w-full xl:w-[50%] z-10 space-y-12 flex flex-col xl:items-start items-center xl:justify-start justify-center">
+      <div className="relative min-h-[250px] md:min-h-[450px] lg:min-h-[800px] 2xl:max-h-[1800px] z-10 lg:px-12 lg:py-8 flex flex-col items-center justify-center lg:justify-between">
+        {/* TOP SECTION */}
+        <div>
+          {/* BIG NAME */}
+          <div className="flex flex-col overflow-hidden">
+            <div className="flex justify-center gap-x-3 sm:gap-x-6 md:gap-x-8 items-center overflow-hidden">
+              <h1
+                ref={aryanRef}
+                className="font-[family-name:var(--font-ubuntu)] font-bold uppercase tracking-[-0.02em] leading-none text-[13vw] sm:text-[13vw] lg:text-[14vw]"
+              >
+                ARYAN
+              </h1>
+              <div
+                ref={pillRef}
+                className="bg-white h-[10vw] w-[20vw] sm:h-[9vw] sm:w-[18vw] rounded-full my-auto shrink-0"
+              />
+            </div>
 
-          {/* Headline */}
-          <div className="space-y-4">
-            <h1 className="text-[120px] md:text-[180px] lg:text-[200px] leading-[0.8] font-normal tracking-tighter">
-              Hello
-            </h1>
-            <p className="text-xl xl:text-xl font-medium tracking-tight flex justify-center xl:items-start xl:justify-start items-center gap-3">
-              <span className="w-8 h-[1px] bg-black hidden xl:block"></span>
-              It's Aryan Shrivastava
-            </p>
+            <div className="relative -mt-[2vw] lg:-mt-[3vw] overflow-hidden">
+              <h1
+                ref={shrivastavaRef}
+                className="font-[family-name:var(--font-ubuntu)] font-bold text-center uppercase tracking-[-0.02em] leading-none text-[13vw] sm:text-[13vw] lg:text-[14vw]"
+              >
+                SHRIVASTAVA
+              </h1>
+
+              {/* PROFILE IMAGE — hidden on small mobile, visible md+ */}
+            </div>
           </div>
 
-          {/* Scroll Indicator */}
-          <div className="pt-0 xl:pt-6">
-           <ResumeDownloadButton/>
-          </div>
+          {/* NAVIGATION */}
+          <nav ref={navRef} className="mt-4 sm:mt-8 flex text-sm sm:text-lg md:text-2xl lg:text-3xl font-medium justify-center lg:justify-end gap-4 sm:gap-8 md:gap-12 pr-1 sm:pr-2 flex-wrap">
+            {/* <a
+              href="#about"
+              className="cursor-target  hover:opacity-60 transition-opacity"
+            >
+              ABOUT
+            </a> */}
+           <a
+              href="mailto:me@aryanshrivastava.dev"
+              className="cursor-target hover:opacity-60 transition-opacity"
+            >
+              CONTACT ME
+            </a>
+            <a
+              href="/Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cursor-target  hover:opacity-60 transition-opacity"
+            >
+              RESUME
+            </a>
+          </nav>
         </div>
 
-        {/* Right Image Column */}
-        <div className="w-full xl:w-[50%] relative h-[400px] md:h-[600px] xl:h-screen mt-6 md:mt-0">
-          <Image
-            src="/pfp.jpeg" 
-            alt="D.Nova Portrait"
-            fill
-            className="object-cover object-center grayscale contrast-[1.1]"
-            priority
-          />
+        {/* BOTTOM SECTION */}
+        <div className=" 2xl:pt-[2vw] pb-4 w-full">
+          <p
+            ref={introRef}
+            className="text-base hidden lg:text-[2.5rem] lg:block font-medium leading-[1.2] tracking-[-0.03em] max-w-3xl"
+          >
+            I&apos;m a software developer, crafting effortless user experiences
+            across web and app.
+          </p>
         </div>
-
       </div>
     </main>
   );

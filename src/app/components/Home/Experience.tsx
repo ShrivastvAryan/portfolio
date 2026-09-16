@@ -1,196 +1,253 @@
-import { ArrowUpRight } from 'lucide-react';
-import Link from 'next/link';
-import ScrollReveal from '../ScrollReveal';
+"use client";
 
-const experiences = [
+import { useEffect, useRef } from "react";
+import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+interface ExperienceItem {
+  company: string;
+  period: string;
+  position: string;
+  description: string;
+  link?: string;
+  linkText?: string;
+}
+
+interface EducationItem {
+  degree: string;
+  period: string;
+  institution: string;
+  description: string;
+  link?: string;
+  linkText?: string;
+}
+
+const experiences: ExperienceItem[] = [
   {
     company: "DashX",
-    period: "October 2025 - Present",
-    position:"Internship",
-   role: [
-  "Engineered Web3-enabled frontend systems with scalable, high-performance API integrations.",
-  "Led end-to-end implementation of on-ramp and off-ramp transaction flows, optimizing usability and conversion.",
-  "Integrated international on-ramp and off-ramp solutions with seamless backend API orchestration for cross-border transactions.",
-],
-    tags: ["Full Stack Developer"],
-    details: null,
-    isActive: true,
+    period: "2025 - Present",
+    position: "Software Developer",
+    description:
+      "Engineered Web3-enabled frontend systems with scalable, high-performance API integrations. Led end-to-end implementation of on-ramp and off-ramp transaction flows, optimizing usability, cross-border payments, and conversion.",
+    link: "https://dashx.xyz/",
+    linkText: "SEE MORE",
   },
   {
     company: "Freelancing",
-    period: "February 2025 - Present",
-    position:"",
-    role: ["Developed responsive, high-performance websites for clients using modern frontend technologies.",
-      "Integrated REST APIs to deliver dynamic and data-driven user experiences.",
-      "Built clean and maintainable interfaces using Next.js, Tailwind CSS, and shadcn/ui.",
-      "Customized websites based on client requirements with a focus on responsiveness and performance."
-    ],
-    tags: ["Full Stack Developer"],
-    details: null,
-    isActive: true,
+    period: "2025 - Present",
+    position: "Full Stack Developer",
+    description:
+      "Developed responsive, high-performance websites for clients using Next.js, Tailwind CSS, and REST APIs. Built clean, maintainable interfaces with a focus on responsiveness, performance, and user satisfaction.",
+    link: "https://github.com/ShrivastvAryan",
+    linkText: "SEE MORE",
   },
   {
     company: "GeekRoom",
-    period: "April 2025 - Present",
-    position:"Core Member",
-    role: [
-  "Organized and managed hackathons, handling end-to-end coordination and execution.",
-  "Contributed to the development of hackathon websites, improving user experience and functionality.",
-  "Mentored participants during a GeekRoom hackathon, providing technical guidance and project support."
-],
-    tags: ["Developer", "UI/UX", "Event Management"],
-    isActive: true,
+    period: "2025 - 2026",
+    position: "Core Member",
+    description:
+      "Organized and managed hackathons, handling end-to-end coordination and execution. Contributed to the development of hackathon websites, improving user experience and mentoring participants with technical guidance.",
+    link: "https://www.linkedin.com/in/aryanshrivastava290605/",
+    linkText: "SEE MORE",
   },
 ];
 
-const education = [
+const educationList: EducationItem[] = [
   {
-    school: "Guru Gobind Singh Indraprastha University",
-    period: "2024-2028",
-    role: [
-      "Grade:8.5 CGPA",
-      "Geek Room (Core Member)",
-    ],
-    tags: ["B.Tech DS-AI"],
-    details: null,
-    isActive: true,
+    degree: "BACHELORS IN TECHNOLOGY (DS-AI)",
+    period: "2024 — 2028",
+    institution:
+      "Guru Gobind Singh Indraprastha University",
+    description:
+      "Pursuing a 4-year degree in Data Science & Artificial Intelligence with a GPA of 8.5, actively contributing as a Core Member in Geek Room.",
   },
 ];
 
 export default function ExperienceSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const expHeadingRef = useRef<HTMLHeadingElement>(null);
+  const expItemsRef = useRef<HTMLDivElement>(null);
+  const eduHeadingRef = useRef<HTMLHeadingElement>(null);
+  const eduItemsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const animate = (
+        headingEl: HTMLElement | null,
+        itemsEl: HTMLElement | null,
+        selector: string
+      ) => {
+        if (headingEl) {
+          gsap.fromTo(
+            headingEl,
+            { x: -60, opacity: 0 },
+            {
+              x: 0,
+              opacity: 1,
+              duration: 0.9,
+              ease: "power4.out",
+              scrollTrigger: {
+                trigger: headingEl,
+                start: "top 85%",
+                toggleActions: "play none none none",
+              },
+            }
+          );
+        }
+        if (itemsEl) {
+          const items = itemsEl.querySelectorAll(selector);
+          gsap.fromTo(
+            items,
+            { y: 50, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.7,
+              ease: "power3.out",
+              stagger: 0.12,
+              scrollTrigger: {
+                trigger: itemsEl,
+                start: "top 82%",
+                toggleActions: "play none none none",
+              },
+            }
+          );
+        }
+      };
+
+      animate(expHeadingRef.current, expItemsRef.current, ".exp-item");
+      animate(eduHeadingRef.current, eduItemsRef.current, ".edu-item");
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="bg-white pt-12 lg:pt-16 pb-8 lg:py-24 px-6 lg:px-20 text-[#1A1A1A]">
-      <div className="container mx-auto">
-        
-        {/* Header Section */}
-        <div className="flex flex-col md:flex-row justify-between items-start mb-10 lg:mb-20 gap-8">
-          <div className="space-y-4">
-            <ScrollReveal>
-              <div className="flex items-center gap-2 text-sm">
-                <span className="w-2 h-2 bg-black rounded-full"></span>
-                <span className="text-gray-500 uppercase tracking-widest text-[10px]">Experiences</span>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={0.1}>
-              <h2 className="text-3xl md:text-5xl font-medium tracking-tight max-w-md leading-tight">
-                Explore My Journey
-              </h2>
-            </ScrollReveal>
-          </div>
-          <div className="max-w-xs space-y-4">
-            <ScrollReveal delay={0.2}>
-              <p className="text-gray-500 text-sm leading-relaxed">
-                I&apos;ve worked across different teams, adapting to varied workflows and contributing to projects from idea to deployment.
-              </p>
-            </ScrollReveal>
-            <ScrollReveal delay={0.3}>
-              <Link
-                href="https://www.linkedin.com/in/aryanshrivastava290605/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 font-medium border-b border-black pb-1 hover:text-blue-600 transition-opacity"
+    <section
+      ref={sectionRef}
+      id="experience"
+      className="bg-[#0B0B0B] text-white py-20 md:py-32 px-6 md:px-12 lg:px-20 font-sans border-t border-white/5"
+    >
+      <div className="max-w-7xl mx-auto space-y-24 md:space-y-36">
+        {/* ================= EXPERIENCE SECTION ================= */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Left Column: EXPERIENCE Heading */}
+          <div className="lg:col-span-4 lg:sticky lg:top-24">
+            <div className="flex items-center justify-between lg:block">
+              <h2
+                ref={expHeadingRef}
+                className="text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-white font-[family-name:var(--font-ubuntu)] leading-none"
               >
-                LinkedIn <ArrowUpRight size={16} />
-              </Link>
-            </ScrollReveal>
+                EXPERIENCE
+              </h2>
+            </div>
           </div>
-        </div>
 
-        {/* Experience List */}
-        <div className="divide-y  divide-gray-100">
-          {experiences.map((exp, index) => (
-            <ScrollReveal key={index} delay={index * 0.1}>
-              <div className="py-12 lg:py-15 first:pt-0 last:pb-0">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-6 items-start">
-                  
-                  {/* Left: Company & Date */}
-                  <div className="md:col-span-5 py-3 lg:py-5">
-                   <h3 className="text-xl font-medium">
-                      {exp.company}
-                      {exp.position && (
-                      <span className="text-gray-400 text-sm font-light">
-                        {" "}({exp.position})
-                      </span>
-                      )}
-</h3>
-                    <p className="text-gray-400 text-sm mt-2">• {exp.period}</p>
-                  </div>
-
-                  {/* Middle: Role */}
-                  <div className="md:col-span-4">
-                    <div className="text-gray-400 text-sm leading-relaxed max-w-[350px] space-y-1 py-5">
-                      {exp.role.map((item, i) => (
-                        <p key={i}> • {item}</p>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Right: Tags */}
-                  <div className="md:col-span-3 flex flex-wrap justify-end gap-2 py-5">
-                    {exp.tags.map(tag => (
-                      <span key={tag} className={`px-4 py-1.5 rounded-full text-[10px] font-medium uppercase tracking-wider ${exp.isActive ? 'bg-black text-white' : 'bg-gray-100 text-gray-500'}`}>
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+          {/* Right Column: Experience Items */}
+          <div ref={expItemsRef} className="lg:col-span-8 space-y-12 md:space-y-14">
+            {experiences.map((exp, index) => (
+              <div key={index} className="exp-item group pb-10 border-b border-white/10 last:border-b-0 last:pb-0">
+                {/* Header Row: Company + Period */}
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+                  <h3 className="text-xl md:text-2xl font-bold uppercase tracking-tight text-white font-[family-name:var(--font-ubuntu)]">
+                    {exp.company}
+                  </h3>
+                  <span className="text-sm md:text-base text-gray-400 font-normal">
+                    {exp.period}
+                  </span>
                 </div>
 
-                {/* Expanded Detail View (Conditional) */}
-                {exp.isActive && exp.details && (
-                  <div className="mt-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-                    <div className="md:col-span-5 flex items-center gap-8 pl-4">
+                {/* Position / Role */}
+                <p className="mt-2 text-base md:text-lg font-medium text-white/90">
+                  {exp.position}
+                </p>
+
+                {/* Description & See More action */}
+                <div className="mt-3 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                  <p className="text-sm md:text-base text-gray-400 leading-relaxed max-w-2xl font-normal">
+                    {exp.description}
+                  </p>
+
+                  {exp.link && (
+                    <div className="shrink-0 md:self-end">
+                      <Link
+                        href={exp.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="cursor-target inline-flex items-center gap-1 text-xs md:text-sm font-bold tracking-wider text-white uppercase hover:text-gray-300 transition-colors"
+                      >
+                        {exp.linkText || "SEE MORE"}{" "}
+                        <ArrowUpRight className="w-4 h-4 ml-0.5" />
+                      </Link>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
-            </ScrollReveal>
-          ))}
+            ))}
+          </div>
         </div>
 
-       <div className='mt-8 lg:mt-16 space-y-4'>
-        <ScrollReveal>
-          <p className='py-2 lg:py-6 text-3xl font-medium tracking-tight max-w-md leading-tight'>
-            Education
-          </p>
-        </ScrollReveal>
-        <div className="divide-y divide-gray-100">
-          {education.map((exp, index) => (
-            <ScrollReveal key={index} delay={index * 0.1}>
-              <div className="py-10 first:pt-0 last:pb-0">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                  
-                  {/* Left: Company & Date */}
-                  <div className="md:col-span-5 pb-2 pt-3 lg:py-5">
-                    <h3 className="text-xl font-medium">{exp.school}</h3>
-                    <p className="text-gray-400 text-sm mt-2">• {exp.period}</p>
-                  </div>
+        {/* ================= EDUCATION SECTION ================= */}
+        <div id="education" className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start pt-16 md:pt-24 border-t border-white/10">
+          {/* Left Column: EDUCATION Heading */}
+          <div className="lg:col-span-4 lg:sticky lg:top-24">
+            <div className="flex items-center justify-between lg:block">
+              <h2
+                ref={eduHeadingRef}
+                className="text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-white font-[family-name:var(--font-ubuntu)] leading-none"
+              >
+                EDUCATION
+              </h2>
+            </div>
+          </div>
 
-                  {/* Middle: Role */}
-                  <div className="md:col-span-4 py-0 lg:py-5">
-                    <div className="md:col-span-4">
-                      <div className="text-gray-400 text-sm leading-relaxed max-w-[350px] space-y-1">
-                        {exp.role.map((item, i) => (
-                          <p key={i}>• {item}</p>
-                        ))}
-                      </div>
+          {/* Right Column: Education Items */}
+          <div ref={eduItemsRef} className="lg:col-span-8 space-y-12 md:space-y-14">
+            {educationList.map((edu, index) => (
+              <div key={index} className="edu-item group pb-10 border-b border-white/10 last:border-b-0 last:pb-0">
+                {/* Header Row: Degree + Period */}
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+                  <h3 className="text-xl md:text-2xl font-bold uppercase tracking-tight text-white font-[family-name:var(--font-ubuntu)]">
+                    {edu.degree}
+                  </h3>
+                  <span className="text-sm md:text-base text-gray-400 font-normal">
+                    {edu.period}
+                  </span>
+                </div>
+
+                {/* Institution */}
+                <p className="mt-2 text-base md:text-lg font-medium text-white/90">
+                  {edu.institution}
+                </p>
+
+                {/* Description */}
+                <div className="mt-3 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                  <p className="text-sm md:text-base text-gray-400 leading-relaxed max-w-2xl font-normal">
+                    {edu.description}
+                  </p>
+
+                  {edu.link && (
+                    <div className="shrink-0 md:self-end">
+                      <Link
+                        href={edu.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="cursor-target inline-flex items-center gap-1 text-xs md:text-sm font-bold tracking-wider text-white uppercase hover:text-gray-300 transition-colors"
+                      >
+                        {edu.linkText || "SEE MORE"}{" "}
+                        <ArrowUpRight className="w-4 h-4 ml-0.5" />
+                      </Link>
                     </div>
-                  </div>
-
-                  {/* Right: Tags */}
-                  <div className="md:col-span-3 flex justify-end gap-2 py-5">
-                    {exp.tags.map(tag => (
-                      <span key={tag} className={`px-4 py-1.5 rounded-full text-[10px] font-medium uppercase tracking-wider ${exp.isActive ? 'bg-black text-white' : 'bg-gray-100 text-gray-500'}`}>
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>              
+                  )}
+                </div>
               </div>
-            </ScrollReveal>
-          ))}
+            ))}
+          </div>
         </div>
-        </div>
-
       </div>
     </section>
   );

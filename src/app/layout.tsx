@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Geist, Geist_Mono, Ubuntu } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Footer from "./components/Footer/Footer";
-import { Ubuntu } from "next/font/google";
-
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
@@ -18,14 +20,10 @@ const ubuntu = Ubuntu({
   variable: "--font-ubuntu",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
   title: "Aryan | Software Developer",
-  description: "Hi, I'm Aryan! A Developer passionate about building cool and innovative applications.",
+  description:
+    "Hi, I'm Aryan! A Developer passionate about building cool and innovative applications.",
 };
 
 export default function RootLayout({
@@ -36,14 +34,26 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans",  ubuntu.variable)}
+      className={cn(
+        "h-full antialiased",
+        geistSans.variable,
+        geistMono.variable,
+        ubuntu.variable
+      )}
     >
-      <body className="min-h-full mx-auto max-w-[1700px] font-[family-name:var(--font-ubuntu)]">
-        {/* <Navbar /> */}
-        <main>{children}</main>
-        <Footer/>
-      </body>
+      <head>
+        <link
+          rel="preload"
+          as="image"
+          href="/bg-image.png"
+          fetchPriority="high"
+        />
+      </head>
 
+      <body className="min-h-full mx-auto bg-black font-[family-name:var(--font-ubuntu)]">
+        <main>{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }

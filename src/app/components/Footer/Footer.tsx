@@ -1,72 +1,101 @@
-import { ArrowUpRight } from "lucide-react";
-import Link from "next/link";
-import ResumeDownloadButton from "../Resume/resume";
+"use client";
+
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
+  const footerRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const navRef = useRef<HTMLElement>(null);
+
   const navItems = [
-    {
-      label: "LinkedIn",
-      href: "https://www.linkedin.com/in/aryanshrivastava290605/",
-    },
-    {
-      label: "GitHub",
-      href: "https://github.com/ShrivastvAryan",
-    },
-    {
-      label: "LeetCode",
-      href: "https://leetcode.com/u/ShrivastvAryan/",
-    },
+    { label: "X", href: "https://x.com/ShrivastvAryan" },
+    { label: "LINKEDIN", href: "https://www.linkedin.com/in/aryanshrivastava290605/" },
+    { label: "GITHUB", href: "https://github.com/ShrivastvAryan" },
+    { label: "LEETCODE", href: "https://leetcode.com/u/ShrivastvAryan/" },
   ];
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Big heading rises from below
+      gsap.fromTo(
+        headingRef.current,
+        { y: 80, opacity: 0, skewY: 3 },
+        {
+          y: 0,
+          opacity: 1,
+          skewY: 0,
+          duration: 1.1,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: "top 90%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+
+      // Nav links stagger in
+      if (navRef.current) {
+        const links = navRef.current.querySelectorAll("a");
+        gsap.fromTo(
+          links,
+          { y: 20, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            ease: "power3.out",
+            stagger: 0.08,
+            scrollTrigger: {
+              trigger: navRef.current,
+              start: "top 92%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+    }, footerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <footer className="w-full font-sans">
-      {/* Top CTA Section */}
-      <div className="bg-[#F6F6F6] py-12 lg:py-32 px-6 flex flex-col items-center text-center">
-        <h2 className="text-4xl md:text-6xl font-medium tracking-tight text-[#1A1A1A] mb-6">
-          Interested in My Journey?
-        </h2>
+    <footer
+      ref={footerRef}
+      id="contact"
+      className="relative w-full overflow-hidden bg-cover bg-center bg-no-repeat min-h-[300px] sm:min-h-[480px] md:min-h-[580px] lg:min-h-[600px] p-6 sm:p-8 flex flex-col justify-end"
+      style={{ backgroundImage: "url('/footer.png')" }}
+    >
+      <div className="w-full mx-auto flex flex-col justify-end">
+        {/* Heading — vw-based so it never overflows */}
+        <h1
+          ref={headingRef}
+          className="font-[family-name:var(--font-ubuntu)] text-[16vw] xl:text-[10vw] font-extrabold lg:text-center text-white uppercase tracking-tight leading-none"
+        >
+          <span className="block">LET&apos;S CONNECT :)</span>
+        </h1>
 
-        <p className="text-gray-500 max-w-2xl text-lg leading-relaxed mb-10">
-          Explore my resume to get a closer look at my development experience,
-          hands-on projects, technical stack, and problem-solving approach.
-        </p>
-
-       <ResumeDownloadButton/>
-      </div>
-
-      {/* Bottom Black Bar */}
-      <div className="bg-[#141414] text-white py-12 lg:py-20 px-6 lg:px-20">
-        <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center gap-6 md:gap-12">
-          
-          {/* Navigation */}
-          <nav className="flex items-center gap-4 md:gap-8 text-sm font-medium text-gray-400">
-            {navItems.map(({ label, href }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white transition-colors"
-              >
-                {label}
-              </a>
-            ))}
-          </nav>
-
-          {/* Email */}
-          <div className="relative group">
+        {/* Navigation Links */}
+        <nav
+          ref={navRef}
+          className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-10 text-white pt-6 sm:pt-8 pb-2 text-xs sm:text-sm md:text-xl lg:text-2xl font-bold uppercase tracking-wider"
+        >
+          {navItems.map(({ label, href }) => (
             <a
-              href="mailto:me@aryanshrivastava.dev"
+              key={label}
+              href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-2xl md:text-6xl xl:text-7xl font-normal tracking-tighter hover:text-gray-300 transition-colors"
+              className="cursor-target hover:opacity-60 transition-opacity"
             >
-              me@aryanshrivastava.dev
+              {label}
             </a>
-
-            <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-white transition-all duration-500 group-hover:w-full"></span>
-          </div>
-        </div>
+          ))}
+        </nav>
       </div>
     </footer>
   );
