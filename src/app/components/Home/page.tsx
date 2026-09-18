@@ -3,13 +3,14 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function PortfolioHero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const aryanRef = useRef<HTMLHeadingElement>(null);
-  const shrivastavaRef = useRef<HTMLHeadingElement>(null);
+  const aryanRef = useRef<HTMLDivElement>(null);
+  const shrivastavaRef = useRef<HTMLDivElement>(null);
   const pillRef = useRef<HTMLDivElement>(null);
   const profileRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
@@ -81,17 +82,20 @@ export default function PortfolioHero() {
       <div className="absolute inset-0 bg-black/10" />
 
       <div className="relative min-h-[250px] md:min-h-[450px] lg:min-h-[800px] 2xl:max-h-[1800px] z-10 lg:px-12 lg:py-8 flex flex-col items-center justify-center lg:justify-between">
+        <h1 className="sr-only">
+          Aryan Shrivastava, Software Developer and Full-Stack Web Developer
+        </h1>
         {/* TOP SECTION */}
         <div>
           {/* BIG NAME */}
           <div className="flex flex-col overflow-hidden">
             <div className="flex justify-center gap-x-3 sm:gap-x-6 md:gap-x-8 items-center overflow-hidden">
-              <h1
+              <div
                 ref={aryanRef}
                 className="font-[family-name:var(--font-ubuntu)] font-bold uppercase tracking-[-0.02em] leading-none text-[13vw] sm:text-[13vw] lg:text-[14vw]"
               >
                 ARYAN
-              </h1>
+              </div>
               <div
                 ref={pillRef}
                 className="bg-white h-[10vw] w-[20vw] sm:h-[9vw] sm:w-[18vw] rounded-full my-auto shrink-0"
@@ -99,12 +103,12 @@ export default function PortfolioHero() {
             </div>
 
             <div className="relative -mt-[2vw] lg:-mt-[3vw] overflow-hidden">
-              <h1
+              <div
                 ref={shrivastavaRef}
                 className="font-[family-name:var(--font-ubuntu)] font-bold text-center uppercase tracking-[-0.02em] leading-none text-[13vw] sm:text-[13vw] lg:text-[14vw]"
               >
                 SHRIVASTAVA
-              </h1>
+              </div>
 
               {/* PROFILE IMAGE — hidden on small mobile, visible md+ */}
             </div>
@@ -112,12 +116,12 @@ export default function PortfolioHero() {
 
           {/* NAVIGATION */}
           <nav ref={navRef} className="mt-4 sm:mt-8 flex text-sm sm:text-lg md:text-2xl lg:text-3xl font-medium justify-center lg:justify-end gap-4 sm:gap-8 md:gap-12 pr-1 sm:pr-2 flex-wrap">
-            {/* <a
-              href="#about"
-              className="cursor-target  hover:opacity-60 transition-opacity"
+            <Link
+              href="/about"
+              className="cursor-target hover:opacity-60 transition-opacity"
             >
               ABOUT
-            </a> */}
+            </Link>
            <a
               href="mailto:me@aryanshrivastava.dev"
               className="cursor-target hover:opacity-60 transition-opacity"

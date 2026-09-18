@@ -3,10 +3,12 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { usePathname } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
+  const pathname = usePathname();
   const footerRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const navRef = useRef<HTMLElement>(null);
@@ -19,6 +21,10 @@ export default function Footer() {
   ];
 
   useEffect(() => {
+    if (pathname === "/about") {
+      return;
+    }
+
     const ctx = gsap.context(() => {
       // Big heading rises from below
       gsap.fromTo(
@@ -61,7 +67,11 @@ export default function Footer() {
     }, footerRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [pathname]);
+
+  if (pathname === "/about") {
+    return null;
+  }
 
   return (
     <footer
