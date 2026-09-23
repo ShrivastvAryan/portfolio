@@ -52,7 +52,7 @@ export default async function BlogPage() {
 
         <section className="py-10 sm:py-14" aria-labelledby="all-notes">
           <div className="mb-6 flex items-end justify-between gap-4 sm:mb-8">
-            <div><p className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-white/55">The collection</p><h2 id="all-notes" className="mt-2 text-xl font-semibold tracking-[-0.045em] sm:text-2xl">{posts.length ? 'All Blogs.' : 'The first note is on its way.'}</h2></div>
+            <div><p className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-white/55">The collection</p><h2 id="all-notes" className="mt-2 text-xl font-semibold tracking-[-0.045em] sm:text-2xl">{posts.length ? 'All Blogs' : 'The first note is on its way.'}</h2></div>
             <span className="text-[0.65rem] font-bold uppercase tracking-[0.16em] text-white/40">{posts.length} {posts.length === 1 ? 'entry' : 'entries'}</span>
           </div>
           {posts.length ? (
