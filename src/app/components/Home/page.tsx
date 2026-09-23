@@ -122,6 +122,12 @@ export default function PortfolioHero() {
             >
               ABOUT
             </Link>
+            <Link
+              href="/blog"
+              className="cursor-target hover:opacity-60 transition-opacity"
+            >
+              BLOGS
+            </Link>
            <a
               href="mailto:me@aryanshrivastava.dev"
               className="cursor-target hover:opacity-60 transition-opacity"
@@ -129,7 +135,7 @@ export default function PortfolioHero() {
               CONTACT ME
             </a>
             <a
-              href="/Resume.pdf"
+              href="https://docs.google.com/document/d/1dWiiA2KjW1XCJhxZ4uNyAfRloKIjdy--leQTsDt19lc/edit?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="cursor-target  hover:opacity-60 transition-opacity"

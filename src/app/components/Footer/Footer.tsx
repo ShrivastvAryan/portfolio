@@ -21,7 +21,7 @@ export default function Footer() {
   ];
 
   useEffect(() => {
-    if (pathname === "/about") {
+    if (pathname === "/about" || pathname.startsWith("/studio") || pathname.startsWith("/blog")) {
       return;
     }
 
@@ -69,7 +69,11 @@ export default function Footer() {
     return () => ctx.revert();
   }, [pathname]);
 
-  if (pathname === "/about") {
+  if (
+    pathname === "/about" ||
+    pathname.startsWith("/blog") ||
+    pathname.startsWith("/studio")
+  ) {
     return null;
   }
 

@@ -9,3 +9,48 @@
   --color-brand-secondary: #7b7b7b;
   --color-brand-tertiary: #f8f8f8;
 }
+
+@layer components {
+  .prose-blog p {
+    margin-top: 1.5rem;
+  }
+
+  .prose-blog h2 {
+    margin-top: 3rem;
+    color: #f6f4ef;
+    font-family: var(--font-geist-sans);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.06em;
+    line-height: 0.95;
+  }
+
+  .prose-blog h3 {
+    margin-top: 2.5rem;
+    color: #f6f4ef;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+  }
+
+  .prose-blog a {
+    color: #f3a08b;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .prose-blog ul,
+  .prose-blog ol {
+    margin-top: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .prose-blog ul {
+    list-style: disc;
+  }
+
+  .prose-blog ol {
+    list-style: decimal;
+  }
+}
