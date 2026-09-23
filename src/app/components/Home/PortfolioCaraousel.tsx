@@ -173,7 +173,7 @@ export default function PortfolioCarousel() {
 
           <ScrollReveal delay={0.15}>
             <p className="text-gray-400 text-sm sm:text-base md:text-lg leading-relaxed max-w-md lg:max-w-lg font-normal">
-              Good design and engineering get out of the way — functional,
+              Good design and engineering get out of the way - functional,
               intentional, and built around real people. Here is how I
               approached each project below.
             </p>

@@ -67,12 +67,12 @@ export default function AboutPage() {
               Home
             </Link>
           </div>
-          <h1 className="font-[family-name:var(--font-geist-sans)] text-5xl font-black uppercase leading-[0.8] tracking-[-0.09em] sm:text-7xl">
+          <h1 className="font-[family-name:var(--font-geist-sans)] text-5xl font-black uppercase leading-[0.8] tracking-[-0.05em] sm:text-7xl">
             About
           </h1>
         
           <p className="mt-3 text-lg font-semibold leading-snug tracking-[-0.035em] sm:text-xl">
-            I&apos;m Aryan — a software developer who enjoys turning ambitious
+            I&apos;m Aryan - a software developer who enjoys turning ambitious
             ideas into clear, useful digital experiences.
           </p>
           <p className="mt-3 max-w-[590px] text-sm leading-relaxed text-white/65 sm:text-[0.95rem]">

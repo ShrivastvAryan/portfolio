@@ -59,7 +59,7 @@ const experiences: ExperienceItem[] = [
 const educationList: EducationItem[] = [
   {
     degree: "BACHELORS IN TECHNOLOGY (DS-AI)",
-    period: "2024 — 2028",
+    period: "2024 - 2028",
     institution:
       "Guru Gobind Singh Indraprastha University",
     description:
