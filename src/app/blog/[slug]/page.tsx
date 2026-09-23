@@ -34,7 +34,7 @@ export default async function BlogPostPage({params}: PostPageProps) {
   return (
     <article className="min-h-screen bg-[#101010] px-5 py-14 text-[#f6f4ef] sm:px-8 sm:py-20">
       <div className="mx-auto max-w-3xl">
-        <Link href="/blog" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1.5 text-[0.6rem] font-bold uppercase tracking-[0.16em] text-white/75 transition-colors hover:border-white/40 hover:bg-white hover:text-black"><ArrowLeft className="size-3" aria-hidden="true" />All notes</Link>
+        <Link href="/blog" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1.5 text-[0.6rem] font-bold uppercase tracking-[0.16em] text-white/75 transition-colors hover:border-white/40 hover:bg-white hover:text-black"><ArrowLeft className="size-3" aria-hidden="true" />BLOGS</Link>
         <header className="border-b border-white/15 pb-10 pt-12 sm:pb-14 sm:pt-16">
           <p className="text-[0.65rem] font-bold uppercase tracking-[0.19em] text-[#f3a08b]">{post.category}</p>
           <h1 className="mt-5 font-[family-name:var(--font-geist-sans)] text-5xl font-black uppercase leading-[0.83] tracking-[-0.045em] sm:text-7xl">{post.title}</h1>

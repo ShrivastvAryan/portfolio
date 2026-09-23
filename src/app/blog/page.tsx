@@ -30,7 +30,7 @@ export default async function BlogPage() {
           <div className="mt-10 grid gap-8 sm:mt-14 sm:grid-cols-[1.25fr_0.75fr] sm:items-end">
             <div>
               <h1 className="font-[family-name:var(--font-geist-sans)] text-6xl font-black uppercase leading-[0.78] tracking-[-0.05em] sm:text-8xl">BLOGS &amp;<br />ideas.</h1>
-              <p className="mt-5 max-w-lg text-lg font-semibold leading-snug tracking-[-0.035em] sm:text-xl">Thoughts on making useful things for the web—and the curiosity that keeps the work moving.</p>
+              <p className="mt-5 max-w-lg text-lg font-semibold leading-snug tracking-[-0.035em] sm:text-xl">Thoughts on making useful things for the web and the curiosity that keeps the work moving.</p>
             </div>
             <div className="border-l border-[#e85d3f] pl-5 text-sm leading-relaxed text-white/60 sm:mb-1 sm:pl-6 sm:text-[0.95rem]">A growing collection of practical lessons, in-progress ideas, and small observations from the intersection of code and craft.</div>
           </div>
