@@ -43,6 +43,16 @@ The editor is embedded at `/studio`. Publishing a post there updates the blog wi
 
 After that, open `/studio`, sign in with your Sanity account, create a **Post**, and publish it. The public pages are `/blog` and `/blog/[slug]`.
 
+## Exact GitHub contribution total (optional)
+
+The footer graph works from public GitHub calendar data without credentials. To show GitHub's exact total contribution count (including the same count shown on your profile), add a server-only GitHub personal access token to `.env.local` and your hosting provider:
+
+```bash
+GITHUB_TOKEN=your-github-personal-access-token
+```
+
+Use a token belonging to the profile owner. Add the `read:user` permission if you want GitHub to include private contribution counts that you have chosen to display publicly. Never prefix this variable with `NEXT_PUBLIC_`.
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.

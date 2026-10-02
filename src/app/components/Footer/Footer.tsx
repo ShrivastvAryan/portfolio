@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { usePathname } from "next/navigation";
+import GitHubActivity from "./GitHubActivity";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -92,6 +93,8 @@ export default function Footer() {
         >
           <span className="block">LET&apos;S CONNECT :)</span>
         </h1>
+
+        <GitHubActivity />
 
         {/* Navigation Links */}
         <nav
